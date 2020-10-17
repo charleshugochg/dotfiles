@@ -99,9 +99,9 @@ endif
 set foldcolumn=1
 
 "Mode Settings
-"let &t_SI = "\<Esc>[6 q" "SI = INSERT mode
-"let &t_SR = "\<Esc>[4 q" "SR = REPLACE mode
-"let &t_EI = "\<Esc>[2 q" "EI = NORMAL mode (ELSE)
+let &t_SI = "\x1b[6 q" "SI = INSERT mode
+let &t_SR = "\x1b[4 q" "SR = REPLACE mode
+let &t_EI = "\x1b[2 q" "EI = NORMAL mode (ELSE)
 
 "Cursor settings:
 
@@ -142,7 +142,6 @@ colorscheme solarized
 set ffs=unix,dos,mac
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -178,7 +177,7 @@ map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove 
-map <leader>t<leader> :tabnext 
+map <leader>tx :tabnext<cr>
 
 " insert mode => normal mode
 inoremap jk <ESC>
@@ -207,6 +206,9 @@ map <leader>p :setlocal paste!<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
+" Linting
+Plug 'dense-analysis/ale'
+
 " Completion
 Plug 'valloric/youcompleteme'
 
@@ -215,7 +217,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " React, javascript, typescript
-" Plug 'leafgarland/typescript-vim' " Vim 8 syntax looks better
+Plug 'leafgarland/typescript-vim' " Vim 8 syntax looks better
 Plug 'peitalin/vim-jsx-typescript'
 
 call plug#end()
@@ -228,3 +230,16 @@ call plug#end()
 " vim airline 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='ayu_dark'
+
+" ale
+let g:ale_fixers = ['prettier', 'eslint']
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugins Maps
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ale
+nmap <silent> <C-e> <Plug>(ale_next_wrap)
