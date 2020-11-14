@@ -243,3 +243,6 @@ let g:ale_sign_warning = '⚠'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ale
 nmap <silent> <C-e> <Plug>(ale_next_wrap)
+
+" ycm
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
